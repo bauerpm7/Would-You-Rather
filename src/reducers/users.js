@@ -1,23 +1,32 @@
-import { userConstants } from '../constants'
+import { RECEIVE_USERS, CAST_VOTE, CREATE_USER } from '../actions/constants'
 
 export default function users (state = {}, action) {
   switch(action.type) {
-    case userContstants.RECEIVE_USERS :
+    case RECEIVE_USERS :
       return {
         ...state,
         ...action.users
       }
-    case userConstants.CREATE_USER :
+    case CREATE_USER :
       const { user } = action
-      let avatarUrl = '';
-      if (user.avatarUrl !== null){
-        avatarUrl = [user.avatarUrl] : ...state[user.avatarUrl]
+      return {
+         ...state,
+        [action.user.id]: action.user
       }
-      return { 
+       
+      
+    case CAST_VOTE:
+      const { authedUser, qid, answer } = action;
+      return {
         ...state,
-        [action.user.id]: action.user,
-        ...avatarUrl
-     }
+        [authedUser]: {
+          ...state[authedUser],
+          answers: {
+            ...state[authedUser].answers,
+            [qid]: answer
+          }
+        }
+      };
     default : 
       return state
   }

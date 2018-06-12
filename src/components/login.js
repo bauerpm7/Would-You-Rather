@@ -1,29 +1,30 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import React, {Component} from 'react';
 
 
-function PaperSheet(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <Paper className={classes.root} elevation={4}>
-        <Typography variant="headline" component="h3">
-          This is a sheet of paper.
-        </Typography>
-        <Typography component="p">
-          Paper can be used to build surface or other elements for your application.
-        </Typography>
-      </Paper>
-    </div>
-  );
+class Login extends Component {
+  state = {
+    username: '',
+    password: '',
+    userNotFound: false,
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let { users } = this.props;
+    let { username, password } = this.state;
+    if (users.indexOf(username) >= 0 && users.indexOf(username).password === password) {
+      this.props.dispatch(setAuthedUser(this.state.username));
+    } else {
+      this.setState({
+        userNotFound: true,
+      });
+    }
+  }
+
+  render() {
+    return (
+      
+    )
+  }
+
 }
-
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PaperSheet);

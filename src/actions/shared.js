@@ -1,8 +1,10 @@
 import { getInitialData } from '../utils/api'
 import { receiveUsers } from './users'
-import { receiveQuestions } from './question'
-import { isLoading } from './loading'
+import { receiveQuestions } from './questions'
 import { showLoading, hideLoading } from 'react-redux-loading'
+import { saveQuestionAnswer } from '../utils/api'
+import { setAuthedUser } from './authedUser'
+import { CAST_VOTE } from './constants'
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -12,7 +14,6 @@ export function handleInitialData () {
         dispatch(receiveQuestions(questions))
         dispatch(receiveUsers(users))
         dispatch(setAuthedUser(null))
-        dispatch(setLoaded())
         dispatch(hideLoading())
     })
   }
@@ -31,7 +32,7 @@ export function handleCastVote ({qid, answer}) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
     dispatch(showLoading());
-    return saveVote({
+    return saveQuestionAnswer({
       authedUser,
       qid,
       answer

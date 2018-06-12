@@ -3,7 +3,7 @@ let users = {
     id: 'sarahedo',
     name: 'Sarah Edo',
     password: 'admin',
-    avatarURL: ,
+    avatarURL: null,
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -16,7 +16,7 @@ let users = {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
     password: 'admin',
-    avatarURL: ,
+    avatarURL: null,
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -27,7 +27,7 @@ let users = {
     id: 'johndoe',
     name: 'John Doe',
     password: 'admin',
-    avatarURL: ,
+    avatarURL: null,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -133,13 +133,15 @@ export function _getQuestions () {
     setTimeout(() => res({...questions}), 1000)
   })
 }
-function formatUser({ id, name, password, avatarURL = "" }) {
-  id,
-  name,
-  password, 
-  answers: {},
-  questions: [],
-  avatarURL
+function formatUser({ id, name, password, avatarURL = null }) {
+  return {
+    id,
+    name,
+    password, 
+    answers: {},
+    questions: [],
+    avatarURL
+  }
 }
 
 export function _saveUser ({ id, name, password, avatarURL }) {
@@ -194,7 +196,6 @@ export function _saveQuestion (question) {
           questions: users[authedUser].questions.concat([formattedQuestion.id])
         }
       }
-
       res(formattedQuestion)
     }, 1000)
   })
@@ -229,3 +230,5 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
+
+
