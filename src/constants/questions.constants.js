@@ -1,0 +1,5 @@
+const export questionConstants = {
+  RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS',
+  ADD_QUESTION = 'ADD_QUESTION',
+  CAST_VOTE = 'CAST_VOTE'
+}

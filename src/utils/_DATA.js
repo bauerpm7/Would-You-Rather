@@ -2,6 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
+    password: 'admin',
     avatarURL: ,
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
@@ -14,6 +15,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
+    password: 'admin',
     avatarURL: ,
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
@@ -24,6 +26,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
+    password: 'admin',
     avatarURL: ,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
@@ -128,6 +131,32 @@ export function _getUsers () {
 export function _getQuestions () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...questions}), 1000)
+  })
+}
+function formatUser({ id, name, password, avatarURL = "" }) {
+  id,
+  name,
+  password, 
+  answers: {},
+  questions: [],
+  avatarURL
+}
+
+export function _saveUser ({ id, name, password, avatarURL }) {
+  return new Promise((res, rej) => {
+    const formattedUser = formatUser({
+      id,
+      name,
+      password,
+      avatarURL
+    })
+    setTimeout(() => {
+      users = {
+        ...users,
+        [formattedUser.id]: formattedUser,
+      }
+      res(formattedUser)
+    }, 1000)
   })
 }
 
