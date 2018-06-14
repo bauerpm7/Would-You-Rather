@@ -13,6 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
+import UserAvatar from './UserAvatar'
 
 
 
@@ -44,7 +45,7 @@ class Nav extends Component {
     window.addEventListener('resize', this.updateViewportSize);
   }
   componentWillUnmount() {
-    window.addEventListener('resize', this.updateViewportSize)
+    window.removeEventListener('resize', this.updateViewportSize)
   }
 
   updateViewportSize () {
@@ -67,7 +68,7 @@ class Nav extends Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { classes, authedUser } = this.props;
     const { isMobile, anchorEl } = this.state;
     const excludeLogin = (!window.location.pathname.includes('login'))
     return (
@@ -120,6 +121,7 @@ class Nav extends Component {
               </nav>
             }
             <div className={classes.flex}></div>
+            { authedUser ? <UserAvatar id = {authedUser}/> : null}
             <Button 
               className = {classes.logout} 
               color="inherit"
@@ -134,8 +136,9 @@ class Nav extends Component {
 Nav.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-const mapStateToProps = (props) => {
+const mapStateToProps = ({authedUser}, props) => {
   return {
+    authedUser,
     ...props
   }
 }
