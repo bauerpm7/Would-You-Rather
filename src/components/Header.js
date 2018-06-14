@@ -151,12 +151,16 @@ class Header extends Component {
           {//Dynamically render header title based on url
           }
           <Route path='/' exact render={() => { return (
-            <Typography className = {classes.title} variant = 'display3' color="inherit" >Would You Rather?</Typography>
+            <Typography className = {classes.title} variant = 'display3' color="inherit" >Would You Rather...?</Typography>
           )}}/>
           <Route path='/new' exact render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Ask a new question?</Typography>
-          )}}/><Route path='/leaderboard' exact render={() => { return (
+          )}}/>
+          <Route path='/leaderboard' exact render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Leaderboard?</Typography>
+          )}}/>
+          <Route path='/login' exact render={() => { return (
+            <Typography className = {classes.title} variant = 'display3' color="inherit" >Would You Rather...?</Typography>
           )}}/>
         </AppBar>
       </div>

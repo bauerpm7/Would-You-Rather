@@ -70,13 +70,13 @@ const styles = theme => ({
 
 class Question extends Component {
   render() {
-    const { question : {id, optionOne, optionTwo, timestamp },  author, classes
+    const { question : { optionOne, optionTwo, timestamp },  author, classes
            } = this.props
     const date = formatDate(timestamp)
 
     return (
       <div>
-        <Card raised = 'true' className = {classes.questionCard} >
+        <Card className = {classes.questionCard} >
           <CardContent className={classes.questionInfo}>
             <UserAvatar id = {author.id}
             />

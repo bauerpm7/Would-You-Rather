@@ -1,30 +1,23 @@
 import React, {Component} from 'react';
-
+import { withStyles } from '@material-ui/core/styles';
+import LoginCard from './LoginCard'
+const styles = {
+ container: {
+  height: '100%'
+ }
+}
 
 class Login extends Component {
-  state = {
-    username: '',
-    password: '',
-    userNotFound: false,
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    let { users } = this.props;
-    let { username, password } = this.state;
-    if (users.indexOf(username) >= 0 && users.indexOf(username).password === password) {
-      this.props.dispatch(setAuthedUser(this.state.username));
-    } else {
-      this.setState({
-        userNotFound: true,
-      });
-    }
-  }
-
-  render() {
+  render(){
+    const { classes } = this.props
     return (
-      
+      <div className = {classes.container}>
+      <LoginCard />
+      </div>
+
     )
   }
-
 }
+  
+export default withStyles(styles)(Login)
