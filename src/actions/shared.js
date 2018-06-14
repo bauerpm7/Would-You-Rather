@@ -11,8 +11,8 @@ export function handleInitialData () {
     dispatch(showLoading())
     return getInitialData()
       .then(({ users, questions}) => {
-        dispatch(receiveQuestions(questions))
         dispatch(receiveUsers(users))
+        dispatch(receiveQuestions(questions))
         dispatch(setAuthedUser(null))
         dispatch(hideLoading())
     })
