@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import placeholder from '../images/avatar-placeholder.png'
 import { formatDate } from '../utils/helpers'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import UserAvatar from './UserAvatar'
 
 const styles = theme => ({
   questionCard: {
@@ -74,15 +73,12 @@ class Question extends Component {
     const { question : {id, optionOne, optionTwo, timestamp },  author, classes
            } = this.props
     const date = formatDate(timestamp)
-    console.log (author.id.avatarURL)
+
     return (
       <div>
-        <Card className = {classes.questionCard} >
+        <Card raised = 'true' className = {classes.questionCard} >
           <CardContent className={classes.questionInfo}>
-            <Avatar
-              className= {classes.avatar}
-              alt={author.name}
-              src={author.avatarURL ? author.avatarURL : placeholder}
+            <UserAvatar id = {author.id}
             />
             <Typography variant='body1' className = {classes.authorName} >{author.name}</Typography>
             <Typography variant='body1' className = {classes.date} >{date}</Typography>
