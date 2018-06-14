@@ -13,11 +13,11 @@ const styles = {
 
 
 class Dashboard extends Component {
+
   render () {
     const { questions, classes } = this.props
     return (
       <div className = {classes.container}>
-        <h3>Questions</h3>
         <ul className = {classes.questionList}>
           {questions ? questions.map(id => (
             <li 

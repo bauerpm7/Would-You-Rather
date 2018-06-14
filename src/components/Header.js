@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Link, Route } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import Nav from './Nav'
 
 
 const styles = theme => ({
@@ -37,13 +37,6 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
-  link : {
-    color: 'white',
-    textDecoration: 'none',
-    paddingRight: 30,
-    textTransform: 'uppercase'
-
-  },
   title: {
     textAlign: 'center',
     fontSize: 32,
@@ -60,93 +53,16 @@ const styles = theme => ({
 });
 
 class Header extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isMobile: false,
-      anchorEl: null,
-    }
-
-    this.updateViewportSize = this.updateViewportSize.bind(this)
-  }
-
-  componentDidMount() {
-    this.updateViewportSize();
-    window.addEventListener('resize', this.updateViewportSize);
-  }
-  componentWillUnmount() {
-    window.addEventListener('resize', this.updateViewportSize)
-  }
-
-  updateViewportSize () {
-    this.setState({isMobile: window.innerWidth < 600 })
-  }
-
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
   render(){
     const { classes } = this.props;
-    const { isMobile, anchorEl } = this.state;
+    const excludeLogin = (!window.location.pathname.includes('login'))
     return (
       <div className={classes.root}>
         <AppBar className = {classes.appbar} position="static">
           <Toolbar>
-            {//Render a burger menu if viewport is < 600 pixels wide
-              isMobile ? 
-              <Fragment>
-                <IconButton 
-                  className={classes.menuButton} 
-                  color="inherit" 
-                  aria-label="Menu"
-                  aria-owns={anchorEl ? 'simple-menu' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleClick}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/'
-                  >
-                    Home
-                  </MenuItem>
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/new'
-                  >
-                    Ask
-                  </MenuItem>
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/leaderboard'
-                  >
-                    LeaderBoard
-                  </MenuItem>
-                </Menu>
-              </Fragment> : //render a nav menur if viewport > 600 pixels wide
-              <nav className={classes.nav}>
-                  <Link className = {classes.link} to='/' >Home</Link>
-                  <Link className = {classes.link} to = '/new' >Ask</Link>
-                  <Link className = {classes.link} to='/leaderboard'>Leaderboard</Link>
-              </nav>
-            }
-            <div className={classes.flex}></div>
-            <Button className = {classes.logout} color="inherit">Logout</Button>
+          { excludeLogin &&
+            <Nav/>
+          }
           </Toolbar>
           {//Dynamically render header title based on url
           }

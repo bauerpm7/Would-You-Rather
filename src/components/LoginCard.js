@@ -1,35 +1,78 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
- 
-const styles = {
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
   loginCard: {
     height: 300,
     width: 300,
     margin: 'auto',
-    marginTop: '20%'
+    marginTop: '20%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+  },
+  button: {
+    width: '50%',
+    margin: 'auto',
+    marginTop: 20,
+    marginBottom: 20
+  },
+  input: {
+    marginBottom: 30
+  },
+  loginForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 30
+  },
+  warning: {
+    textAlign: 'center',
+    color: '#f01659',
+    marginBottom: -31,
+    [theme.breakpoints.up('sm')] : {
+      marginTop: 50,
+      marginBottom: -71,
+    },
+  },
+  loginHeader: {
+    backgroundColor: '#3f51b5',
+    color: '#fff'
   }
-}
+})
 
 class LoginCard extends Component{
 
   state = {
       username: '',
       password: '',
-      userNotFound: false,
+      invalidCredentials: false
   }
+
+handleLoggedin () {
+  const { from }  = this.props.location.state
+  const { history } = this.props
+  history.push( from )
+}
 
 handleSubmit () {
     const { setAuthedUser, users }  = this.props
-    const { username, password } = this.state
+    const { username, password, invalidCredentials } = this.state
      Object.keys(users).forEach(user => {
       if (users[user].id === username && users[user].password === password){
          setAuthedUser(username);
+         this.handleLoggedin()
+         this.setState({invalidCredentials: false})
       }
+      return
     })
+     this.setState({invalidCredentials: true})
+     
   }
 
   handleOnChange(option, text) {
@@ -40,34 +83,42 @@ handleSubmit () {
 
   render() {
     const { users, classes } = this.props
-    const { username, password } = this.state
+    const { username, password, invalidCredentials } = this.state
     return (
+      <Fragment>
+      {invalidCredentials ? <h3 className = {classes.warning} >Invalid username or password</h3>
+        : null}
       <Card className = {classes.loginCard}>
-        <h2> Login Page</h2>
-        <form>
-        <input
+        <div className = {classes.loginHeader}>
+          <h2> Login </h2>
+        </div>
+        <form className = {classes.loginForm}>
+        <Input
+          className = {classes.input}
           placeholder="username"
           value={username}
           onChange={(e) => this.handleOnChange('username', e.target.value)}>
-        </input>
-        <input
-              className="LF_container__input--form"
-              type="password"
+        </Input>
+        <Input
+              className = {classes.input}
               placeholder="password"
               value={password}
               onChange={(e) => this.handleOnChange('password', e.target.value)}>
-          </input>
-          <Link
-            to={Object.keys(users).length > 0 ? "/" : "/login"}
+          </Input>
+          <Button
+            className = {classes.button}
+            variant = 'contained'
+            color = 'secondary'
             onClick={() => {
               this.handleSubmit()
               }
             }
           >
-          <span className="LF_container__span--form--a--text">Login</span>
-          </Link>
+            Submit
+          </Button>
           </form>
       </Card>
+      </Fragment>
     )
   }
 }
