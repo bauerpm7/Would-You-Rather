@@ -1,6 +1,6 @@
 import { RECEIVE_USERS, CREATE_USER } from './constants'
-// import { saveUser } from '../utils/api'
-// import { showLoading, hideLoading } from 'react-redux-loading'
+import { saveUser } from '../utils/api'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function receiveUsers (users) {
   return {
@@ -16,16 +16,16 @@ export function createUser (user){
   } 
 }
 
-// export function handleCreateUser ( name, id, password ) {
-//   return (dispatch, getState) => {
-//     dispatch ( showLoading ())
-//     return saveUser({
-//       name,
-//       id,
-//       password
-//     })
-//       .then((user) => dispatch(createUser(user)))
-//       .then(() => dispatch(hideLoading))
-//   }
-// }
+export function handleCreateUser ( name, id, password ) {
+  return (dispatch, getState) => {
+    dispatch ( showLoading ())
+    return saveUser({
+      name,
+      id,
+      password
+    })
+      .then((user) => dispatch(createUser(user)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
 

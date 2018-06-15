@@ -1,14 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import hero from '../images/theThinker.jpg';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { setAuthedUser } from '../actions/authedUser'
@@ -70,7 +66,6 @@ class Nav extends Component {
   render(){
     const { classes, authedUser } = this.props;
     const { isMobile, anchorEl } = this.state;
-    const excludeLogin = (!window.location.pathname.includes('login'))
     return (
       <Fragment>
             {//Render a burger menu if viewport is < 600 pixels wide

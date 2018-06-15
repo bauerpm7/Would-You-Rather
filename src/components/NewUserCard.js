@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
-import { setAuthedUser } from '../actions/authedUser';
+import { withRouter } from 'react-router-dom';
+import { handleCreateUser } from '../actions/users';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
@@ -46,61 +46,78 @@ const styles = theme => ({
   }
 })
 
-class LoginCard extends Component{
+class NewUserCard extends Component{
 
   state = {
       username: '',
       password: '',
+      fullName: '',
       invalidCredentials: false
   }
 
-
 handleSubmit () {
-    const { setAuthedUser, users , history}  = this.props
-    const { username, password } = this.state
-     Object.keys(users).forEach(user => {
-      if (users[user].id === username && users[user].password === password){
-         setAuthedUser(username);
-         this.setState({invalidCredentials: false})
-         history.push('/')
+    const { handleCreateUser, history, users }  = this.props
+    const { fullName, username, password } = this.state
+    if (document.getElementById('fullName').value !=='' &&
+        document.getElementById('username').value !=='' &&
+        document.getElementById('password').value !=='' 
+        ){
+      if(Object.keys(users).indexOf(username) >= 0){
+        return alert('Username already exists')
+      } else{
+        handleCreateUser(fullName, username, password)
+        history.push('/login') 
+        return
       }
-      return
-    })
-     this.setState({invalidCredentials: true})
-     
+    }
+    this.setState({invalidCredentials: true})
   }
 
   handleOnChange(option, text) {
-    option === 'username'
-    ? this.setState({ username: text })
-    : this.setState({ password: text })
+    if (option === 'fullName'){
+      this.setState({fullName: text})
+    }
+    if (option === 'username'){
+      this.setState({username: text})
+    }
+    if (option === 'password'){
+      this.setState({password: text})
+    }
+    
   }
 
   render() {
     const { classes } = this.props
-    const { username, password, invalidCredentials } = this.state
+    const { fullName, username, password, invalidCredentials } = this.state
     return (
       <Fragment>
-        {invalidCredentials ? <h3 className = {classes.warning} >Invalid username or password</h3>
-          : null}
+        {invalidCredentials ? <h3 className = {classes.warning} >All fields are required</h3> 
+        : null
+        }
         <Card className = {classes.loginCard}>
           <div className = {classes.loginHeader}>
-            <h2> Login </h2>
+            <h2> Create New User </h2>
           </div>
           <form className = {classes.loginForm}>
             <Input
+              id='fullName'
+              className = {classes.input}
+              placeholder="full name"
+              onChange={(e) => this.handleOnChange('fullName', e.target.value)}>
+            </Input>
+            <Input
+              id='username'
               className = {classes.input}
               placeholder="username"
-              value={username}
               onChange={(e) => this.handleOnChange('username', e.target.value)}>
             </Input>
             <Input
+              id='password'
               className = {classes.input}
               placeholder="password"
-              value={password}
               onChange={(e) => this.handleOnChange('password', e.target.value)}>
             </Input>
-            <Link to='/create'>Register</Link>
+            
             <Button
               className = {classes.button}
               variant = 'contained'
@@ -119,12 +136,11 @@ handleSubmit () {
   }
 }
 
-const mapStateToProps = ( { users, authedUser }, props) => {
+const mapStateToProps = ( { users }, props) => {
   return {
     users,
-    authedUser,
     ...props
   }
 }
 
-export default withRouter(connect(mapStateToProps, { setAuthedUser})(withStyles(styles)(LoginCard)))
+export default withRouter(connect(mapStateToProps, { handleCreateUser })(withStyles(styles)(NewUserCard)))

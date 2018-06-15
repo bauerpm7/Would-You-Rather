@@ -7,6 +7,7 @@ import LoadingBar from 'react-redux-loading';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute'
 import Login from './Login'
+import NewUser from './NewUser'
 
 
 
@@ -26,6 +27,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute path = '/' exact component={Dashboard}/>
               <Route path = '/login' component = {Login} />
+              <Route path = '/create' component = {NewUser} />
             </Switch>
         </div>
       </Fragment>
