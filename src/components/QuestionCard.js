@@ -68,7 +68,7 @@ const styles = theme => ({
 })
 
 
-class Question extends Component {
+class QuestionCard extends Component {
   render() {
     const { question : { optionOne, optionTwo, timestamp },  author, classes
            } = this.props
@@ -109,4 +109,4 @@ const mapStateToProps = ({ questions, users, authedUser }, { id }) => {
 };
 
 
-export default connect(mapStateToProps)(withStyles(styles)(Question))
+export default connect(mapStateToProps)(withStyles(styles)(QuestionCard))
