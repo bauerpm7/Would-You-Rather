@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 
 const mapStateToProps = ({ authedUser }) => {
   return {
-    authed : !!authedUser
+    authed : authedUser
   };
 }
 

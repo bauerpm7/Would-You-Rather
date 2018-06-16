@@ -4,6 +4,7 @@ import QuestionCard from './QuestionCard';
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -83,5 +84,12 @@ const mapStateToProps = ({ authedUser, questions }) => {
                         .map(question => question.id),
   };
 };
+
+Dashboard.propTypes = {
+  authedUser: PropTypes.string.isRequired,
+  classes:  PropTypes.object.isRequired,
+  newQuestions: PropTypes.array.isRequired,
+  answeredQuestions: PropTypes.array.isRequired
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(Dashboard));

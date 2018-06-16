@@ -96,7 +96,7 @@ class Nav extends Component {
                   <MenuItem 
                     onClick={this.handleClose}
                     component = {Link}
-                    to = '/new'
+                    to = '/new_question'
                   >
                     Ask
                   </MenuItem>
@@ -111,12 +111,12 @@ class Nav extends Component {
               </Fragment> : //render a nav menur if viewport > 600 pixels wide
               <nav className={classes.nav}>
                   <Link className = {classes.link} to='/' >Home</Link>
-                  <Link className = {classes.link} to = '/new' >Ask</Link>
+                  <Link className = {classes.link} to = '/new_question' >Ask</Link>
                   <Link className = {classes.link} to='/leaderboard'>Leaderboard</Link>
               </nav>
             }
             <div className={classes.flex}></div>
-            { authedUser ? <UserAvatar id = {authedUser}/> : null}
+            { authedUser ? <UserAvatar size = {40} id = {authedUser}/> : null}
             <Button 
               className = {classes.logout} 
               color="inherit"

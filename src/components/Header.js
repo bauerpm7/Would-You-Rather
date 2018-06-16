@@ -17,7 +17,7 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     width: '100%',
     height: 150,
-    [theme.breakpoints.up('sm')] : {
+    [theme.breakpoints.up('md')] : {
       height: 250
     },
     [theme.breakpoints.up('lg')] : {
@@ -32,7 +32,7 @@ const styles = theme => ({
   title: {
     textAlign: 'center',
     fontSize: 32,
-    [theme.breakpoints.up('sm')] : {
+    [theme.breakpoints.up('md')] : {
       fontSize: 56,
       marginTop: 30
     },
@@ -61,14 +61,20 @@ class Header extends Component {
           <Route path='/' exact render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Would You Rather...?</Typography>
           )}}/>
-          <Route path='/new' exact render={() => { return (
+          <Route path='/new_question'  render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Ask a new question?</Typography>
           )}}/>
-          <Route path='/leaderboard' exact render={() => { return (
+          <Route path='/leaderboard'  render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Leaderboard?</Typography>
           )}}/>
-          <Route path='/login' exact render={() => { return (
+          <Route path='/login'  render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Would You Rather...?</Typography>
+          )}}/>
+          <Route path='/user' render={() => { return (
+            <Typography className = {classes.title} variant = 'display3' color="inherit" >User Profile?</Typography>
+          )}}/>
+          <Route path='/question' render={() => { return (
+            <Typography className = {classes.title} variant = 'display3' color="inherit" >Take The Poll?</Typography>
           )}}/>
         </AppBar>
       </div>

@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
+    "d3-shape": "^1.2.0",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -13,7 +15,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "victory-core": "^23.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { formatDate } from '../utils/helpers'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import UserAvatar from './UserAvatar'
+import UserAvatar from './UserAvatar';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   questionCard: {
@@ -27,6 +28,9 @@ const styles = theme => ({
       flexDirection: 'row'
     },
   },
+  link: {
+    textDecoration: 'none'
+  },
   questionInfo: {
     backgroundColor: '#3f51b5',
     color: '#fff',
@@ -37,7 +41,8 @@ const styles = theme => ({
     paddingTop: 15,
     paddingBottom: 15,
     [theme.breakpoints.up('sm')] : {
-      width: 200
+      width: 200,
+      minWidth: 150
     },
   },
   avatar: {
@@ -46,16 +51,24 @@ const styles = theme => ({
     height: 60,
   },
   authorName: {
+    paddingTop: 20,
     textTransform: 'uppercase',
     color: '#fff'
   },
   date: {
     color: '#fff'
   },
-  button: { 
+  disabledButton: { 
     marginTop: 5,
     marginBottom: 5,
-    width: '90%'
+    margin: 'auto',
+    textTransform: 'uppercase',
+    width: '90%',
+    border: '0.5px solid black',
+    borderRadius: 2,
+    paddingTop: 10,
+    paddingBottom: 10
+
   },
   questionContent: {
     [theme.breakpoints.up('sm')] : {
@@ -70,30 +83,37 @@ const styles = theme => ({
 
 class QuestionCard extends Component {
   render() {
-    const { question : { optionOne, optionTwo, timestamp },  author, classes
+    const { question : { id, optionOne, optionTwo, timestamp },  author, classes
            } = this.props
     const date = formatDate(timestamp)
 
     return (
-      <div>
+      <Fragment>
         <Card className = {classes.questionCard} >
           <CardContent className={classes.questionInfo}>
-            <UserAvatar id = {author.id}
-            />
-            <Typography variant='body1' className = {classes.authorName} >{author.name}</Typography>
-            <Typography variant='body1' className = {classes.date} >{date}</Typography>
+            <Link className = {classes.link} to = {`/user/${author.id}`}>
+              <UserAvatar size = {60} id = {author.id}
+              />
+              <Typography variant='body1' className = {classes.authorName} >{author.name}</Typography>
+              <Typography variant='body1' className = {classes.date} >{date}</Typography>
+            </Link>
           </CardContent>
-          <CardContent className = {classes.questionContent}>
-            <Typography variant = 'subheading'> Would you rather ... ?</Typography>
-            <Button variant="outlined" color="primary" className={classes.button}>
-              {optionOne.text}
-            </Button>
-            <Button variant="outlined" color="secondary" className={classes.button}>
-              {optionTwo.text}
-            </Button>
-           </CardContent>
+        
+          
+            <CardContent className = {classes.questionContent}>
+              <Link className = {classes.link} to = {`/question/${id}`}>
+                <Typography variant = 'title'> Would you rather ... ?</Typography>
+                <Typography color="primary" className={classes.disabledButton}>
+                  {optionOne.text}
+                </Typography>
+                <Typography color="secondary" className={classes.disabledButton}>
+                  {optionTwo.text}
+                </Typography>
+              </Link>
+             </CardContent>
+           
         </Card>
-      </div>
+      </Fragment>
       )
   }
 }

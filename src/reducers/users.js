@@ -1,6 +1,6 @@
-import { RECEIVE_USERS, CAST_VOTE, CREATE_USER } from '../actions/constants'
+import { RECEIVE_USERS, SAVE_QUESTION_ANSWER, CREATE_USER } from '../actions/constants'
 
-export default function users (state = {}, action) {
+export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_USERS:
       return { ...state, ...action.users };
@@ -10,7 +10,7 @@ export default function users (state = {}, action) {
         ...state,
         [user.id]: user
         }
-    case CAST_VOTE:
+    case SAVE_QUESTION_ANSWER:
       const { authedUser, qid, answer } = action;
       return {
         ...state,
