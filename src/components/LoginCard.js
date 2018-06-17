@@ -6,16 +6,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+
 
 const styles = theme => ({
   loginCard: {
     height: 350,
     width: 300,
     margin: 'auto',
-    marginTop: '20%',
+    marginTop: '10%',
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center',
+    textAlign: 'center',[theme.breakpoints.up('md')] : {
+      width: 600
+    }
   },
   button: {
     width: '50%',
@@ -29,7 +33,11 @@ const styles = theme => ({
   loginForm: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 30
+    padding: 30,
+    [theme.breakpoints.up('md')] : {
+      paddingLeft: 100,
+      paddingRight: 100
+    }
   },
   warning: {
     textAlign: 'center',
@@ -125,6 +133,10 @@ const mapStateToProps = ( { users, authedUser }, props) => {
     authedUser,
     ...props
   }
+}
+
+LoginCard.propTypes = {
+  classes: PropTypes.object.isRequired
 }
 
 export default withRouter(connect(mapStateToProps, { setAuthedUser})(withStyles(styles)(LoginCard)))

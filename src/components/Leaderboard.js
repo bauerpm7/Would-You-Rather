@@ -8,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import UserAvatar from './UserAvatar';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -56,7 +58,7 @@ class Leaderboard extends Component {
   render() {
     const { users, history, classes } = this.props;
     const { isMobile } = this.state
-
+    console.log (history)
     return (
       <div className= {classes.root}>
         
@@ -150,5 +152,11 @@ const mapStateToProps = ({ users }) => {
     : []
   }
 };
+
+Leaderboard.propTypes = {
+  classes : PropTypes.object.isRequired,
+  history : PropTypes.object.isRequired,
+  users : PropTypes.array.isRequired
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(Leaderboard))

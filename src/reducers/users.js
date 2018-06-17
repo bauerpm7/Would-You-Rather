@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, SAVE_QUESTION_ANSWER, CREATE_USER } from '../actions/constants'
+import { RECEIVE_USERS, SAVE_QUESTION_ANSWER, CREATE_USER, ADD_QUESTION } from '../actions/constants'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -22,6 +22,14 @@ export default (state = {}, action) => {
           }
         }
       };
+    case ADD_QUESTION:
+      return{
+        ...state,
+        [action.question.author]: {
+          ...state[action.question.author],
+          questions: state[action.question.author].questions.concat(action.question.id)
+        }
+      }
     default:
       return state;
   }

@@ -47,7 +47,7 @@ const styles = theme => ({
 class Header extends Component {
   render(){
     const { classes } = this.props;
-    const excludeLogin = (!window.location.pathname.includes('login'))
+    const excludeLogin = (!window.location.pathname.includes('login')) && (!window.location.pathname.includes('create'))
     return (
       <div className={classes.root}>
         <AppBar className = {classes.appbar} position="static">
@@ -75,6 +75,9 @@ class Header extends Component {
           )}}/>
           <Route path='/question' render={() => { return (
             <Typography className = {classes.title} variant = 'display3' color="inherit" >Take The Poll?</Typography>
+          )}}/>
+          <Route path='/create' render={() => { return (
+            <Typography className = {classes.title} variant = 'display3' color="inherit" >Register?</Typography>
           )}}/>
         </AppBar>
       </div>

@@ -43,9 +43,7 @@ export const handleSaveAnswer  = ({qid, answer}) => (dispatch, getState) => {
 
 
 
-
-
-export function handleAddQuestion ({ optionOne, optionTwo}) {
+export function handleAddQuestion ({ optionOne, optionTwo, author}) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
     dispatch (showLoading())

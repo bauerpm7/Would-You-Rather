@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const styles = {
   container: {
@@ -14,6 +15,10 @@ function NotFound (props) {
       <h3>Sorry....Page not found</h3>
     </div>
     )
+}
+
+NotFound.propTypes = { 
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(NotFound)

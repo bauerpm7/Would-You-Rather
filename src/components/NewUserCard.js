@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   loginCard: {
@@ -88,7 +89,7 @@ handleSubmit () {
 
   render() {
     const { classes } = this.props
-    const { fullName, username, password, invalidCredentials } = this.state
+    const { invalidCredentials } = this.state
     return (
       <Fragment>
         {invalidCredentials ? <h3 className = {classes.warning} >All fields are required</h3> 
@@ -141,6 +142,13 @@ const mapStateToProps = ( { users }, props) => {
     users,
     ...props
   }
+}
+
+NewUserCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  handleCreateUser: PropTypes.func.isRequired, 
+  history: PropTypes.object.isRequired, 
+  users: PropTypes.object.isRequired,
 }
 
 export default withRouter(connect(mapStateToProps, { handleCreateUser })(withStyles(styles)(NewUserCard)))

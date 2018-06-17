@@ -1,15 +1,16 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { formatDate } from '../utils/helpers'
+import { formatDate } from '../utils/helpers';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UserAvatar from './UserAvatar';
 import { Link } from 'react-router-dom';
 import VictoryPie from './PieChart';
-import { handleSaveAnswer } from '../actions/questions'
+import { handleSaveAnswer } from '../actions/questions';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   questionCard: {
@@ -101,9 +102,8 @@ const styles = theme => ({
   }
 })
 
-
 class QuestionDetails extends Component {
-
+  
   handleClick = answer => {
     const {id, handleSaveAnswer} = this.props;
     handleSaveAnswer({
@@ -119,8 +119,7 @@ class QuestionDetails extends Component {
       question : { optionOne, optionTwo, timestamp },  
       author, 
       classes,
-      answered,
-      id        } = this.props
+      answered } = this.props
 
     const date = formatDate(timestamp)
     let optionOneVotes = optionOne.votes.length
@@ -178,7 +177,7 @@ class QuestionDetails extends Component {
             } 
            </CardContent>
         </Card>
-        {answered ?
+        {optionOne.votes.length > 0 || optionTwo.votes.length > 0  ?
           <Fragment>
             <h3 className= {classes.title} >Vote Tally</h3>
             <div className= {classes.container}>
@@ -224,6 +223,12 @@ const mapStateToProps = ({ questions, users, authedUser }, props ) => {
     }
   } 
   
-
+QuestionDetails.propTypes = {
+  classes: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired,
+  answered: PropTypes.string, 
+  id: PropTypes.string.isRequired,
+  handleSaveAnswer: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, { handleSaveAnswer })(withStyles(styles)(QuestionDetails))

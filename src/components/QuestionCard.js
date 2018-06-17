@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { formatDate } from '../utils/helpers'
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import UserAvatar from './UserAvatar';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   questionCard: {
@@ -98,23 +98,20 @@ class QuestionCard extends Component {
               <Typography variant='body1' className = {classes.date} >{date}</Typography>
             </Link>
           </CardContent>
-        
-          
-            <CardContent className = {classes.questionContent}>
-              <Link className = {classes.link} to = {`/question/${id}`}>
-                <Typography variant = 'title'> Would you rather ... ?</Typography>
-                <Typography color="primary" className={classes.disabledButton}>
-                  {optionOne.text}
-                </Typography>
-                <Typography color="secondary" className={classes.disabledButton}>
-                  {optionTwo.text}
-                </Typography>
-              </Link>
-             </CardContent>
-           
+          <CardContent className = {classes.questionContent}>
+            <Link className = {classes.link} to = {`/question/${id}`}>
+              <Typography variant = 'title'> Would you rather ... ?</Typography>
+              <Typography color="primary" className={classes.disabledButton}>
+                {optionOne.text}
+              </Typography>
+              <Typography color="secondary" className={classes.disabledButton}>
+                {optionTwo.text}
+              </Typography>
+            </Link>
+          </CardContent> 
         </Card>
       </Fragment>
-      )
+    )
   }
 }
 
@@ -127,6 +124,12 @@ const mapStateToProps = ({ questions, users, authedUser }, { id }) => {
     author: users[question.author],
   };
 };
+
+QuestionCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired,
+  author: PropTypes.object.isRequired
+}
 
 
 export default connect(mapStateToProps)(withStyles(styles)(QuestionCard))

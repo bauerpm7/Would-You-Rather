@@ -33,7 +33,8 @@ class App extends Component {
               <PrivateRoute path = '/' exact component={Dashboard}/>
               <Route path = '/login' component = {Login} />
               <Route path = '/create' component = {NewUser} />
-              <PrivateRoute path = '/question/:id' component = {QuestionDetails}/>
+              <PrivateRoute path = '/question/:id' component = 
+                {QuestionDetails}/>
               <PrivateRoute path = '/user/:id' component = {UserDetails}/>
               <PrivateRoute path = '/new_question' component = {AddQuestion}/>
               <PrivateRoute path = '/leaderboard' component = {Leaderboard}/>

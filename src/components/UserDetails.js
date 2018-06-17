@@ -6,6 +6,7 @@ import QuestionCard from './QuestionCard';
 import UserAvatar from './UserAvatar';
 import NotFound from './NotFound';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   container: {
@@ -39,9 +40,9 @@ class UserDetails extends Component {
     }
 
     return (
-      <div className = { classes. container}>
-        <Card className= {classes.userCard}>
-          <CardContent className = {classes.userName}>
+      <div className={ classes.container }>
+        <Card className={classes.userCard}>
+          <CardContent className={classes.userName}>
             <UserAvatar size = {80} className = {classes.avatar} id={user.id} />
             <h2>{user.name}</h2>
             {
@@ -95,5 +96,13 @@ const mapStateToProps = ({ users, questions }, props) => {
       : []
   }
 };
+
+UserDetails.propTypes = { 
+  classes: PropTypes.object.isRequired, 
+  user: PropTypes.object.isRequired, 
+  asked: PropTypes.array.isRequired, 
+  answered: PropTypes.array.isRequired, 
+  notFound: PropTypes.bool
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(UserDetails));

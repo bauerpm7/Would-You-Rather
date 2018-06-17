@@ -8,30 +8,9 @@ import Button from '@material-ui/core/Button';
 import { handleAddQuestion } from '../actions/questions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { styles } from '../jss_styles/AddQuestion_styles'
 
- const styles = theme => ({
-    card: { 
-      margin: 'auto',
-      marginTop: '20px', 
-      display: 'flex',
-      width: 300,
-      [theme.breakpoints.up('md')]: {
-        width: 650
-      }
-    },
-    cardContent: {
-      flex: 1
-    },
-    title: { 
-      textAlign: 'center' 
-    },
-    textField: {
-      marginBottom: 30,
-      marginTop: 10
-    }
-
-  })
 
 class AddQuestion extends Component {
   state = {
@@ -54,9 +33,9 @@ class AddQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { optionOne, optionTwo } = this.state;
-    const { handleAddQuestion } = this.props;
+    const { handleAddQuestion, id } = this.props;
 
-    handleAddQuestion({ optionOne, optionTwo })
+    handleAddQuestion({ optionOne, optionTwo, id })
       .then(res => {
         this.setState({
           newQID: res.question.id

@@ -131,6 +131,7 @@ class Nav extends Component {
 Nav.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 const mapStateToProps = ({authedUser}, props) => {
   return {
     authedUser,

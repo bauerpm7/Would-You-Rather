@@ -5,23 +5,7 @@ import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
-
-const styles = {
-  container: {
-    width:'100%',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
-   questionList : {
-    listStyle: 'none',
-    padding: 0,
-    paddingBottom: 50
-  },
-  label : {
-    margin: 'auto'
-  }
-}
+import { styles } from '../jss_styles/Dashboard_styles'
 
 class Dashboard extends Component {
   state = {
@@ -33,7 +17,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { authedUser, classes, newQuestions, answeredQuestions } = this.props;
+    const { classes, newQuestions, answeredQuestions } = this.props;
     const { checked } = this.state;
 
     return (
@@ -86,7 +70,6 @@ const mapStateToProps = ({ authedUser, questions }) => {
 };
 
 Dashboard.propTypes = {
-  authedUser: PropTypes.string.isRequired,
   classes:  PropTypes.object.isRequired,
   newQuestions: PropTypes.array.isRequired,
   answeredQuestions: PropTypes.array.isRequired
