@@ -1,4 +1,7 @@
-import hero from '../images/theThinker.jpg';
+//styles for Header Component
+
+//background image for header
+import hero from '../../images/theThinker.jpg';
 
 export const styles = theme => ({
   root: {

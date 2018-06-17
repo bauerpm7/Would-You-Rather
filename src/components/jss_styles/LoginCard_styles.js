@@ -1,3 +1,5 @@
+//styles for LoginCard
+
 export const styles = theme => ({
   loginCard: {
     height: 350,

@@ -1,3 +1,4 @@
+//Styles for Dashboard Component
 export const styles = {
   container: {
     width:'100%',

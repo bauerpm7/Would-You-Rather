@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Route } from 'react-router-dom';
 import Nav from './Nav'
-import { styles } from '../jss_styles/Header_styles'
+import { styles } from './jss_styles/Header_styles'
 
 
 class Header extends Component {

@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import { styles } from '../jss_styles/LoginCard_styles'
+import { styles } from './jss_styles/LoginCard_styles'
 
 class LoginCard extends Component{
 
@@ -58,6 +58,7 @@ handleSubmit () {
             <Input
               className = {classes.input}
               placeholder="password"
+              type = 'password'
               value={password}
               onChange={(e) => this.handleOnChange('password', e.target.value)}>
             </Input>

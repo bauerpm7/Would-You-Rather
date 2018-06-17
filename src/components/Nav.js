@@ -2,11 +2,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import MenuIcon from '@material-ui/icons/Menu';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
 import UserAvatar from './UserAvatar'
@@ -54,7 +50,7 @@ class Nav extends Component {
 
   render(){
     const { classes, authedUser } = this.props;
-    const { isMobile, anchorEl } = this.state;
+    const { isMobile } = this.state;
     return (
       <Fragment>
             {//Render a burger menu if viewport is < 600 pixels wide

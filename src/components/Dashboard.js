@@ -5,7 +5,7 @@ import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
-import { styles } from '../jss_styles/Dashboard_styles'
+import { styles } from './jss_styles/Dashboard_styles'
 
 class Dashboard extends Component {
   state = {

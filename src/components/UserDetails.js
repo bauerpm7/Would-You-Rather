@@ -7,29 +7,7 @@ import UserAvatar from './UserAvatar';
 import NotFound from './NotFound';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
-const styles = theme => ({
-  container: {
-    textAlign: 'center',
-    marginBottom: 50
-  },
-  userCard: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 0,
-    width: 300,
-    marginTop: 40,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    textAlign: 'center',
-  },
-  userName: { 
-    textAlign: 'center' 
-  },
-  avatar: {
-    margin: 'auto' 
-  }
-})
+import { styles } from './jss_styles/UserDetails_styles'
 
 class UserDetails extends Component {
   render() {
@@ -64,7 +42,6 @@ class UserDetails extends Component {
           asked.map(id => <QuestionCard key={id} id={id} />)
         }
         </div>
-
         <div>
         <h2>Answered ({answered.length})</h2>
         {

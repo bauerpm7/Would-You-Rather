@@ -7,45 +7,8 @@ import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import { styles } from './jss_styles/NewUserCard_styles'
 
-const styles = theme => ({
-  loginCard: {
-    height: 350,
-    width: 300,
-    margin: 'auto',
-    marginTop: '20%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-  },
-  button: {
-    width: '50%',
-    margin: 'auto',
-    marginTop: 20,
-    marginBottom: 20
-  },
-  input: {
-    marginBottom: 30
-  },
-  loginForm: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 30
-  },
-  warning: {
-    textAlign: 'center',
-    color: '#f01659',
-    marginBottom: -31,
-    [theme.breakpoints.up('sm')] : {
-      marginTop: 50,
-      marginBottom: -71,
-    },
-  },
-  loginHeader: {
-    backgroundColor: '#3f51b5',
-    color: '#fff'
-  }
-})
 
 class NewUserCard extends Component{
 
@@ -116,6 +79,7 @@ handleSubmit () {
               id='password'
               className = {classes.input}
               placeholder="password"
+              type='password'
               onChange={(e) => this.handleOnChange('password', e.target.value)}>
             </Input>
             
@@ -128,7 +92,7 @@ handleSubmit () {
                 }
               }
             >
-                Submit
+              Submit
             </Button>
           </form>
         </Card>
