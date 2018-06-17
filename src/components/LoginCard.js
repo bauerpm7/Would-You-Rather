@@ -7,52 +7,7 @@ import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-
-
-const styles = theme => ({
-  loginCard: {
-    height: 350,
-    width: 300,
-    margin: 'auto',
-    marginTop: '10%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',[theme.breakpoints.up('md')] : {
-      width: 600
-    }
-  },
-  button: {
-    width: '50%',
-    margin: 'auto',
-    marginTop: 20,
-    marginBottom: 20
-  },
-  input: {
-    marginBottom: 30
-  },
-  loginForm: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 30,
-    [theme.breakpoints.up('md')] : {
-      paddingLeft: 100,
-      paddingRight: 100
-    }
-  },
-  warning: {
-    textAlign: 'center',
-    color: '#f01659',
-    marginBottom: -31,
-    [theme.breakpoints.up('sm')] : {
-      marginTop: 50,
-      marginBottom: -71,
-    },
-  },
-  loginHeader: {
-    backgroundColor: '#3f51b5',
-    color: '#fff'
-  }
-})
+import { styles } from '../jss_styles/LoginCard_styles'
 
 class LoginCard extends Component{
 
@@ -61,7 +16,6 @@ class LoginCard extends Component{
       password: '',
       invalidCredentials: false
   }
-
 
 handleSubmit () {
     const { setAuthedUser, users , history}  = this.props
@@ -75,7 +29,6 @@ handleSubmit () {
       return
     })
      this.setState({invalidCredentials: true})
-     
   }
 
   handleOnChange(option, text) {
@@ -116,8 +69,7 @@ handleSubmit () {
               onClick={() => {
                 this.handleSubmit()
                 }
-              }
-            >
+              }>
                 Submit
             </Button>
           </form>

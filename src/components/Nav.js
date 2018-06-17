@@ -10,8 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
 import UserAvatar from './UserAvatar'
-
-
+import HamburgerMenu from './HamburgerMenu'
 
 const styles = theme => ({
   link : {
@@ -48,16 +47,6 @@ class Nav extends Component {
     this.setState({isMobile: window.innerWidth < 600 })
   }
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-
-
   handleSubmit () {
       const { setAuthedUser }  = this.props
       setAuthedUser(null);
@@ -70,45 +59,8 @@ class Nav extends Component {
       <Fragment>
             {//Render a burger menu if viewport is < 600 pixels wide
               isMobile ? 
-              <Fragment>
-                <IconButton  
-                  color="inherit" 
-                  aria-label="Menu"
-                  aria-owns={anchorEl ? 'simple-menu' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleClick}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/'
-                  >
-                    Home
-                  </MenuItem>
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/new_question'
-                  >
-                    Ask
-                  </MenuItem>
-                  <MenuItem 
-                    onClick={this.handleClose}
-                    component = {Link}
-                    to = '/leaderboard'
-                  >
-                    LeaderBoard
-                  </MenuItem>
-                </Menu>
-              </Fragment> : //render a nav menur if viewport > 600 pixels wide
+              <HamburgerMenu/>
+              : //render a nav menur if viewport > 600 pixels wide
               <nav className={classes.nav}>
                   <Link className = {classes.link} to='/' >Home</Link>
                   <Link className = {classes.link} to = '/new_question' >Ask</Link>
