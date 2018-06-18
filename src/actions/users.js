@@ -9,10 +9,10 @@ export function receiveUsers (users) {
   }
 }
 
-export function createUser (user){  
+export function createUser (user ){  
   return {
     type: CREATE_USER,
-    user
+    user,
   } 
 }
 

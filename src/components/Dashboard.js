@@ -66,12 +66,15 @@ class Dashboard extends Component {
 const mapStateToProps = ({ authedUser, questions }) => {
   return {
     authedUser,
+    // sorts the questions based on whether the user has answered the question or nit
     newQuestions: Object.values(questions).filter(question => !question.optionOne.votes.includes(authedUser) && 
                   !question.optionTwo.votes.includes(authedUser))
+                  // sort unanswered questions by the timestamp
                   .sort((a, b) => b.timestamp - a.timestamp)
                   .map(question => question.id),
     answeredQuestions:  Object.values(questions).filter(question => question.optionOne.votes.includes(authedUser) ||
                         question.optionTwo.votes.includes(authedUser))
+                        // sort answered questions by the timestamp
                         .sort((a, b) => b.timestamp - a.timestamp)
                         .map(question => question.id),
   };

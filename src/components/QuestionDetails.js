@@ -1,20 +1,31 @@
+//various vender components
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+//material ui components
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { formatDate } from '../utils/helpers';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+
+//import components
 import UserAvatar from './UserAvatar';
-import { Link } from 'react-router-dom';
 import VictoryPie from './PieChart';
+
+//import function from questions actions
 import { handleSaveAnswer } from '../actions/questions';
-import PropTypes from 'prop-types';
+
+//import jss styles
 import { styles } from './jss_styles/QuestionCard_styles'
+
 
 class QuestionDetails extends Component {
   
+  //call handleSaveAnswer function when the user clicks an answer
   handleClick = answer => {
     const {id, handleSaveAnswer} = this.props;
     handleSaveAnswer({
@@ -23,6 +34,7 @@ class QuestionDetails extends Component {
     });
   }
 
+  //alert the user if they have already answered the question
   handleAlreadyAnswered = () => (alert("You've already answered this question."))
 
   render() {

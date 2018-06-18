@@ -1,14 +1,23 @@
+// vendor imports
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+// material ui imports
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { formatDate } from '../utils/helpers'
 import { withStyles } from '@material-ui/core/styles';
+
+// component import
 import UserAvatar from './UserAvatar';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+// jss styles import
 import { styles } from './jss_styles/QuestionCard_styles'
+
+// helper function import from utils
+import { formatDate } from '../utils/helpers'
 
 
 /**

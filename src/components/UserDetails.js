@@ -1,12 +1,19 @@
+// vendor imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+// material ui imports
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import QuestionCard from './QuestionCard';
+import { withStyles } from '@material-ui/core/styles';
+
+// component imports
 import UserAvatar from './UserAvatar';
 import NotFound from './NotFound';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+
+// jss styles import
 import { styles } from './jss_styles/UserDetails_styles'
 
 class UserDetails extends Component {
@@ -65,9 +72,11 @@ const mapStateToProps = ({ users, questions }, props) => {
   }
   return {
     user,
+    //gets questions the user has asked
     asked: user.questions
       ? user.questions
       : [],
+    // gets questions the user has answered
     answered: user.answers
       ? Object.keys(user.answers)
       : []

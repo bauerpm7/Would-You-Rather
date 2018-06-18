@@ -20,6 +20,7 @@ import { styles } from './jss_styles/AddQuestion_styles'
 
 
 class AddQuestion extends Component {
+  // initial state for the component
   state = {
     optionOne: '',
     optionTwo: '',
@@ -42,8 +43,7 @@ class AddQuestion extends Component {
   /**
    * Calls the handleAddQuestion function then sets the state newQID to the new
    * id of the created question
-   * @param  {event} e  when the submit button is clicked
-   *   */
+   *    *   */
   handleSubmit = (e) => {
     e.preventDefault();
     const { optionOne, optionTwo } = this.state;

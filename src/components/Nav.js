@@ -1,13 +1,21 @@
+// vendor imports
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
+
+// material ui imports
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+
+// function imports from actions
 import { setAuthedUser } from '../actions/authedUser'
-import { connect } from 'react-redux'
+
+// component imports
 import UserAvatar from './UserAvatar'
 import HamburgerMenu from './HamburgerMenu'
 
+//jss styles
 const styles = theme => ({
   link : {
     color: 'white',
@@ -23,6 +31,7 @@ const styles = theme => ({
 class Nav extends Component {
   constructor(props){
     super(props);
+    // initial state for component
     this.state = {
       isMobile: false,
       anchorEl: null,

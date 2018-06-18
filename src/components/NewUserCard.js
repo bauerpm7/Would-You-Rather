@@ -1,28 +1,36 @@
+// vendor imports
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleCreateUser } from '../actions/users';
+import PropTypes from 'prop-types';
+
+// material ui imports
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+
+// function import from actions
+import { handleCreateUser } from '../actions/users';
+
+// jss styles import
 import { styles } from './jss_styles/NewUserCard_styles'
 
 
 class NewUserCard extends Component{
 
+  // initial state for component
   state = {
       username: '',
       password: '',
       fullName: '',
-      invalidCredentials: false
+      emptyInput: false
   }
 
   //submission of new user input, alert user if fields left blank or if username
   //already exists.
   handleSubmit () {
-    const { handleCreateUser, history, users }  = this.props
+    const { handleCreateUser, users, history }  = this.props
     const { fullName, username, password } = this.state
     if (document.getElementById('fullName').value !=='' &&
         document.getElementById('username').value !=='' &&
@@ -30,13 +38,13 @@ class NewUserCard extends Component{
         ){
       if(Object.keys(users).indexOf(username) >= 0){
         return alert('Username already exists')
-      } else{
+      } else {
         handleCreateUser(fullName, username, password)
-        history.push('/login') 
-        return
-      }
+        }
+      history.push('/login')
+      return
     }
-    this.setState({invalidCredentials: true})
+    this.setState({emptyInput: true})
   }
 
   //set the state based on user inputs
@@ -55,11 +63,11 @@ class NewUserCard extends Component{
 
   render() {
     const { classes } = this.props
-    const { invalidCredentials } = this.state
+    const { emptyInput } = this.state
     return (
       <Fragment>
         {//alert the user if a field is left blank
-          invalidCredentials ? <h3 className = {classes.warning} >All fields are required</h3> 
+          emptyInput ? <h3 className = {classes.warning} >All fields are required</h3> 
         : null
         }
         <Card className = {classes.loginCard}>
@@ -92,7 +100,8 @@ class NewUserCard extends Component{
               variant = 'contained'
               color = 'secondary'
               onClick={() => {
-                this.handleSubmit()
+                this.handleSubmit();
+                // this.handleLogin();
                 }
               }
             >

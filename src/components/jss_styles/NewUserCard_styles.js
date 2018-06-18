@@ -32,6 +32,7 @@ export const styles = theme => ({
       marginTop: 50,
       marginBottom: -71,
     },
+    paddingBottom: 20
   },
   loginHeader: {
     backgroundColor: '#3f51b5',

@@ -67,9 +67,8 @@ class Leaderboard extends Component {
 
 const mapStateToProps = ({ users }) => {
   return {
-    //if there are users map over the users and return an array with the users id,
-    //name, answers, and questions
     users: users 
+    // checks each user to determine which questions they authored or answered
     ? Object.values(users)
       .map(({ id, name, answers, questions }) => ({
         id,

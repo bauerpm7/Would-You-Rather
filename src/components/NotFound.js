@@ -1,7 +1,11 @@
+// vendor imports
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
+// material ui imports
+import { withStyles } from '@material-ui/core/styles';
+
+// jss styles
 const styles = {
   container: {
     textAlign: 'center'

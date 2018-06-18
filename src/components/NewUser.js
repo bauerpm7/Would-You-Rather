@@ -1,8 +1,15 @@
+// vendor import
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import NewUserCard from './NewUserCard'
 import PropTypes from 'prop-types';
 
+// material ui import
+import { withStyles } from '@material-ui/core/styles';
+
+//component import
+import NewUserCard from './NewUserCard'
+
+
+// jss styles
 const styles = {
  container: {
   height: '100%'

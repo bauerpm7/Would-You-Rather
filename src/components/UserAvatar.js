@@ -1,9 +1,17 @@
+// vendor import
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/styles';
-import placeholder from '../images/avatar-placeholder.png'
 import PropTypes from 'prop-types';
+
+// component import
+import Avatar from '@material-ui/core/Avatar';
+
+// material ui import
+import { withStyles } from '@material-ui/core/styles';
+
+// image import
+import placeholder from '../images/avatar-placeholder.png'
+
 
 //jss styles
 const styles = {
