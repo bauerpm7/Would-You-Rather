@@ -61,7 +61,7 @@ npm start
 * [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 * [Material-ui](https://material-ui.com/)
 * [Victory Piechart by Formidable Labs](https://formidable.com/open-source/victory/docs/victory-pie/)
-* [ProtTypes](https://www.npmjs.com/package/prop-types)
+* [PropTypes](https://www.npmjs.com/package/prop-types)
 * [react-redux-loading](https://www.npmjs.com/package/react-redux-loading)
 
 
