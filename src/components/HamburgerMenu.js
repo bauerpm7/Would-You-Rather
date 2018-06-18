@@ -1,7 +1,10 @@
+//vendor imports
 import React, {Component, Fragment} from 'react';
+import { Link } from 'react-router-dom';
+
+//material ui imports
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -13,10 +16,12 @@ class HamburgerMenu extends Component {
     }
   }
 
+  //handle click event on burger menu icon and menu items
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
+  //close the hamburger menu
   handleClose = () => {
     this.setState({ anchorEl: null });
   };

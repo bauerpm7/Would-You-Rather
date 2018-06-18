@@ -19,7 +19,9 @@ class NewUserCard extends Component{
       invalidCredentials: false
   }
 
-handleSubmit () {
+  //submission of new user input, alert user if fields left blank or if username
+  //already exists.
+  handleSubmit () {
     const { handleCreateUser, history, users }  = this.props
     const { fullName, username, password } = this.state
     if (document.getElementById('fullName').value !=='' &&
@@ -37,6 +39,7 @@ handleSubmit () {
     this.setState({invalidCredentials: true})
   }
 
+  //set the state based on user inputs
   handleOnChange(option, text) {
     if (option === 'fullName'){
       this.setState({fullName: text})
@@ -55,7 +58,8 @@ handleSubmit () {
     const { invalidCredentials } = this.state
     return (
       <Fragment>
-        {invalidCredentials ? <h3 className = {classes.warning} >All fields are required</h3> 
+        {//alert the user if a field is left blank
+          invalidCredentials ? <h3 className = {classes.warning} >All fields are required</h3> 
         : null
         }
         <Card className = {classes.loginCard}>

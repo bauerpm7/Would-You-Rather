@@ -1,23 +1,30 @@
+//vendor imports
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+// material ui imports
 import { setAuthedUser } from '../actions/authedUser';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+
+// jss styles import
 import { styles } from './jss_styles/LoginCard_styles'
 
 class LoginCard extends Component{
-
+  //initial state
   state = {
       username: '',
       password: '',
       invalidCredentials: false
   }
 
-handleSubmit () {
+  //submit the users login in credentials if the user credentials are verified 
+  //set the user as the authorized user and redirect to dashboard
+  handleSubmit () {
     const { setAuthedUser, users , history}  = this.props
     const { username, password } = this.state
      Object.keys(users).forEach(user => {
@@ -31,6 +38,7 @@ handleSubmit () {
      this.setState({invalidCredentials: true})
   }
 
+  //update the state to reflect the username and password text
   handleOnChange(option, text) {
     option === 'username'
     ? this.setState({ username: text })

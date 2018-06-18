@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import placeholder from '../images/avatar-placeholder.png'
 import PropTypes from 'prop-types';
 
+//jss styles
 const styles = {
   avatar: {
     margin: 'auto',
@@ -26,9 +27,8 @@ class UserAvatar extends Component{
   }
 }
 
-const mapStateToProps = ({  users }, { id }) => {
+const mapStateToProps = ({ users }, { id }) => {
   const user = users[id];
-  console.log(users[id])
   return {
     user,
   };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import UserAvatar from './UserAvatar';
 import { withStyles } from '@material-ui/core/styles';
 
-
+//custom styles for the table
 const CustomTableCell = withStyles(theme => ({
   head: {
     backgroundColor: '#3f51b5',
@@ -19,10 +19,10 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-class MobileLeaderboard extends Component  {
+class LeaderboardCard extends Component  {
  
   render (){
-    const { users } = this.props
+    const { users, isMobile } = this.props
     return( 
       <Paper>
         <Table>
@@ -31,8 +31,12 @@ class MobileLeaderboard extends Component  {
               <CustomTableCell padding = "dense">rank</CustomTableCell>
               <CustomTableCell padding="none"></CustomTableCell>
               <CustomTableCell padding = "dense" >name</CustomTableCell>
-              <CustomTableCell padding = "dense" >asked</CustomTableCell>
-              <CustomTableCell padding = "dense" >answered</CustomTableCell>
+              { !isMobile &&
+                <Fragment>
+                  <CustomTableCell padding = "dense" >asked</CustomTableCell>
+                  <CustomTableCell padding = "dense" >answered</CustomTableCell>
+                </Fragment>
+              }
               <CustomTableCell padding = "dense" >score</CustomTableCell>
             </TableRow>
           </TableHead>
@@ -47,8 +51,12 @@ class MobileLeaderboard extends Component  {
                     <UserAvatar size= {40} id={user.id} />
                   </TableCell>
                   <TableCell padding = "dense">{user.name}</TableCell>
-                  <TableCell padding = "dense" >{user.asked}</TableCell>
-                  <TableCell padding = "dense" >{user.answered}</TableCell>
+                  { !isMobile &&
+                    <Fragment>
+                      <TableCell padding = "dense" >{user.asked}</TableCell>
+                      <TableCell padding = "dense" >{user.answered}</TableCell>
+                    </Fragment>
+                  }
                   <TableCell padding = "dense" >{user.asked + user.answered}</TableCell>
                 </TableRow>
               ))
@@ -60,4 +68,4 @@ class MobileLeaderboard extends Component  {
   }
 }
 
-export default MobileLeaderboard
+export default LeaderboardCard

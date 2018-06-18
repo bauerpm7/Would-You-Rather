@@ -31,18 +31,23 @@ class Nav extends Component {
     this.updateViewportSize = this.updateViewportSize.bind(this)
   }
 
+  //listen for changes to viewport width
   componentDidMount() {
     this.updateViewportSize();
     window.addEventListener('resize', this.updateViewportSize);
   }
+
+  //stop listening for chages to the viewport width
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateViewportSize)
   }
 
+  // toggle the state of isMobile based on the width of the viewport
   updateViewportSize () {
     this.setState({isMobile: window.innerWidth < 600 })
   }
 
+  //handle submission of the logout button
   handleSubmit () {
       const { setAuthedUser }  = this.props
       setAuthedUser(null);

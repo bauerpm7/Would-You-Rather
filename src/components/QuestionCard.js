@@ -10,6 +10,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { styles } from './jss_styles/QuestionCard_styles'
 
+
+/**
+ * render a card with author info and question options
+ */
 class QuestionCard extends Component {
   render() {
     const { question : { id, optionOne, optionTwo, timestamp },  author, classes

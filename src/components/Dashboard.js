@@ -1,18 +1,26 @@
+//various vendor imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+
+//material-ui imports
 import QuestionCard from './QuestionCard';
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types'
+
+// import custom jss styles
 import { styles } from './jss_styles/Dashboard_styles'
 
 class Dashboard extends Component {
+  
   state = {
+    //default state of switch
     checked: false
   }
   
-  handleChange = (event) => {
+  //toggle between displaying unanswered and answered questions
+  handleToggleAnswered = (event) => {
     this.setState({checked: event.target.checked})
   };
 
@@ -29,7 +37,7 @@ class Dashboard extends Component {
               className= {classes.switch}
               checked = {this.state.checked}
               value='checked'
-              onChange={this.handleChange}
+              onChange={this.handleToggleAnswered}
             />
           }
           label = "Show Questions You've Answered"

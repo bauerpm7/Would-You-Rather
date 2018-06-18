@@ -1,25 +1,28 @@
-import React, {Component} from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import LoginCard from './LoginCard';
+// vendor imports
+import React from 'react';
 import PropTypes from 'prop-types';
 
+// material ui import
+import { withStyles } from '@material-ui/core/styles';
+
+// component import
+import LoginCard from './LoginCard';
+
+
+// jss styles
 const styles = {
  container: {
   height: '100%'
  }
 }
 
-class Login extends Component {
-
-  render(){
-    const { classes } = this.props
-    return (
-      <div className = {classes.container}>
+function Login (props) {
+  const { classes } = props
+  return (
+    <div className = {classes.container}>
       <LoginCard />
-      </div>
-
-    )
-  }
+    </div>
+  )
 }
 
 Login.propTypes = {

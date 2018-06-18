@@ -1,11 +1,18 @@
+// various vendor imports
 import React, { Component, Fragment } from 'react';
-import Header from './Header'
 import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
 import Dashboard from '../components/Dashboard'
 import LoadingBar from 'react-redux-loading';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// import action function
+import { handleInitialData } from '../actions/shared'
+
+// Private route element to prevent unauthenticated users from accession private pages
 import PrivateRoute from './PrivateRoute'
+
+//import the components
+import Header from './Header'
 import Login from './Login'
 import NewUser from './NewUser';
 import NotFound from './NotFound';
@@ -13,8 +20,6 @@ import QuestionDetails from './QuestionDetails'
 import UserDetails from './UserDetails'
 import AddQuestion from './AddQuestion'
 import Leaderboard from './Leaderboard'
-
-
 
 class App extends Component {
   componentDidMount() {
@@ -28,7 +33,6 @@ class App extends Component {
         <LoadingBar />
         <div >
           <Header/>
-
             <Switch>
               <PrivateRoute path = '/' exact component={Dashboard}/>
               <Route path = '/login' component = {Login} />
@@ -46,8 +50,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default connect()(App);
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import NewUserCard from './NewUserCard'
 import PropTypes from 'prop-types';
@@ -9,19 +9,14 @@ const styles = {
  }
 }
 
-class NewUser extends Component {
-
-  render(){
-    const { classes } = this.props
-    return (
-      <div className = {classes.container}>
-      <NewUserCard />
-      </div>
-
-    )
-  }
+function NewUser (props) {
+  const { classes } = props
+  return (
+    <div className = {classes.container}>
+    <NewUserCard />
+    </div>
+  )
 }
-
 NewUser.propTypes = {
   classes: PropTypes.object.isRequired
 }
