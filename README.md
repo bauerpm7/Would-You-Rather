@@ -19,7 +19,7 @@ To play you must first login using one of the hard coded users:
   
 The password for all three users is: admin
 
-Alternatively you may create your own username and password by clicking on register. At this time there is no functionality to add your own avatar, a default avatar will be displayed.
+Alternatively you may create your own username and password by clicking on register. At this time there is no functionality to add your own avatar, a default avatar will be displayed. Also, since there is no real backend, your username and password will not be saved meaning you must register each time you visit the page and your previous user data will not be stored.
 
 On the dashboard screen you can click on one of the questions to be taken to the questions detail pages. There you can see how others have voted and make your selection.  
 
