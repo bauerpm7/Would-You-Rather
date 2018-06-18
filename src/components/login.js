@@ -24,7 +24,7 @@ function Login (props) {
     </div>
   )
 }
-
+// PropTypes
 Login.propTypes = {
   classes: PropTypes.object.isRequired
 }
