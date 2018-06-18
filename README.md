@@ -1,100 +1,72 @@
-# Would You Rather Project
+# Would You Rather
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+## Project Purpose:
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+This is my submission for Project 2 of the [Udacity REACT Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).  "Would You Rather?"  lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
-## Data
+Users are be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
 
-There are two types of objects stored in our database:
+The app was built with a mobile-first design meaning that it is fully responsive and looks great on any size display!
 
-* Users
-* Questions
 
-### Users
+## How to Play
 
-Users include:
+To play you must first login using one of the hard coded users:
+  Sarah Edo, username: sarahedo
+  Tyler McGinnis, username: tylermcginnis
+  John Doe, username: johndoe
+  
+The password for all three users is: admin
 
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
+Alternatively you may create your own username and password by clicking on register. At this time there is no functionality to add your own avatar, a default avatar will be displayed.
 
-### Questions
+On the dashboard screen you can click on one of the questions to be taken to the questions detail pages. There you can see how others have voted and make your selection.  
 
-Questions include:
+In the dashboard or the question details page you can also click on the portion of the question card containing the user avatar and name to go to their user details page.  There you will be able to see which questions they've authored and which they've answered.
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
+On the top navigation you can click on Ask to be taken to the question creation page. There you can provide to options to the question would you rather.  Clicking on submit will take you directly to the question detail page where you can tally your vote.  Clicking on cancel will redirect you back to the dashboard.
 
-### Voting Options
+Clicking on Leaderboard in the top nav will take you to the leaderboard where you will be able to see who has asked and answered the most questions.
 
-Voting options are attached to questions. They include:
+Clicking on the logout button will log you out as the user and redirect you to the login page.
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
 
-Your code will talk to the database via 4 methods:
+## Demo
 
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
+Visit the live demo site at https://would-you-rather-bauerpm7.herokuapp.com/
 
-1) `_getUsers()` Method
 
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
+## Installing
+Would You Rather was built with create-react-app & requires nothing more than cloning the repository and running the following commands in the repository directory using the CLI.
 
-2) `_getQuestions()` Method
+```
+yarn install
+yarn start
+```
 
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
+or
 
-3) `_saveQuestion(question)` Method
+```
+npm install
+npm start
+```
 
-*Description*: Save the polling question in the database.  
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
+### Acknowledgements:
+* [Create-react-app Documentation](https://github.com/facebookincubator/create-react-app)
+* [React API](https://facebook.github.io/react/docs/react-api.html)
+* [React-async-script-loader](https://www.npmjs.com/package/react-async-script-loader)
+* [react-redux](https://github.com/reduxjs/react-redux?files=1)
+* [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+* [Material-ui](https://material-ui.com/)
+* [Victory Piechart by Formidable Labs](https://formidable.com/open-source/victory/docs/victory-pie/)
+* [ProtTypes](https://www.npmjs.com/package/prop-types)
+* [react-redux-loading](https://www.npmjs.com/package/react-redux-loading)
 
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
-
-4) `_saveQuestionAnswer(object)` Method
-
-*Description*: Save the answer to a particular polling question in the database.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
-
-## Contributing
-
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+### Udacity Resources:
+* [Would You Rather Project Rubric](https://review.udacity.com/#!/rubrics/1567/view)
+* [Udacity CSS Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)
+* [Udacity HTML Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)
+* [Udacity JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
